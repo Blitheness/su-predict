@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('login/twitter', 'Auth\LoginController@redirectToProvider');
+Route::view('/', 'welcome')->middleware('guest');
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+
+Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
