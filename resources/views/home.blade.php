@@ -13,8 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    @if (Auth::user()->gameEntries->count() > 0)
+                    <p>You've made some entries</p>
+                    @foreach(Auth::user()->gameEntries as $g)
+                    <p>
+                        <strong>{{ $g['outcome_1'] }}</strong> {{ $g['outcome_1_value'] }}%<br>
+                        <strong>{{ $g['outcome_2'] }}</strong> {{ $g['outcome_2_value'] }}%<br>
+                        <strong>Put it on page...</strong> {{ $g['page'] }}
+                    </p>
+                    {{ $g }}
+                    @endforeach
+                    @else
+                    <p>You haven't made any entries</p>
+                    <pre>#swangame Outcome 1: 50%; Outcome 2: 50%; put it on page 50.</pre>
+                    @endif
                 </div>
             </div>
         </div>
