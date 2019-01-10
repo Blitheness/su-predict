@@ -8,10 +8,6 @@ class GameEntry extends Model
 {
     protected $fillable = [
         'twitter_id', // varchar 255, to match Users table
-        'outcome_1',
-        'outcome_1_value',
-        'outcome_2',
-        'outcome_2_value',
         'page'
     ];
     protected $dates = [
@@ -20,5 +16,8 @@ class GameEntry extends Model
     ];
     public function user() {
         return $this->belongsTo('App/User', 'twitter_id', 'provider_id');
+    }
+    public function options() {
+        return $this->hasMany('App\EntryOption');
     }
 }

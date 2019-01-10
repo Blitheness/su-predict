@@ -17,14 +17,18 @@
                     <p>You've made some entries</p>
                     @foreach(Auth::user()->gameEntries as $g)
                     <p>
-                        <strong>{{ $g['outcome_1'] }}</strong> {{ $g['outcome_1_value'] }}%<br>
-                        <strong>{{ $g['outcome_2'] }}</strong> {{ $g['outcome_2_value'] }}%<br>
+                        <em>{{ $g['created_at'] }}</em><br>
+                        @foreach($g->options as $o)
+                        <strong>{{ $o->outcome }}</strong> {{ $o->value }}%; 
+                        @endforeach
                         <strong>Put it on page...</strong> {{ $g['page'] }}
                     </p>
-                    {{ $g }}
                     @endforeach
                     @else
-                    <p>You haven't made any entries</p>
+                    <div class="alert alert-info">
+                        You haven't made any entries.
+                    </div>
+                    <p>Follow the format below:</p>
                     <pre>#swangame Outcome 1: 50%; Outcome 2: 50%; put it on page 50.</pre>
                     @endif
                 </div>
