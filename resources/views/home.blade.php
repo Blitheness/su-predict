@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('format')
+<p>Follow the format below:</p>
+<pre>#swangame Outcome 1: 50%; Outcome 2: 50%; put it on page 50.</pre>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -23,13 +26,14 @@
                         @endforeach
                         <strong>Put it on page...</strong> {{ $g['page'] }}
                     </p>
+                    <hr>
+                    @yield('format')
                     @endforeach
                     @else
                     <div class="alert alert-info">
                         You haven't made any entries.
                     </div>
-                    <p>Follow the format below:</p>
-                    <pre>#swangame Outcome 1: 50%; Outcome 2: 50%; put it on page 50.</pre>
+                    @yield('format')
                     @endif
                 </div>
             </div>
